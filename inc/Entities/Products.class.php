@@ -7,7 +7,7 @@ class Products {
     private string $description;
     private float $price;
     private int $categoryId;  
-    private string $condition; 
+    private string $conditions; 
     private string $createdAt; 
     private string $updatedAt; 
 
@@ -65,11 +65,11 @@ class Products {
     
 	// private string $condition; 
 	public function getCondition():string {
-		return $this->condition;
+		return $this->conditions;
 	}
 
-	public function setCondition(string $condition) {
-		$this->condition = $condition;
+	public function setCondition(string $conditions) {
+		$this->conditions = $conditions;
 	}
 
     // private string $updatedAt; 

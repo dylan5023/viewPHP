@@ -32,4 +32,30 @@ class OrderConverter {
             return $stdObjectList;
         }
     }
+    //To post into Database
+    public static function convertToObj($stdObject) {
+        if ( ! is_array($stdObject) ) {
+            $newOrder = new Orders();
+            $newOrder->setSellerId($stdObject->sellerId);
+            $newOrder->setBuyerId($stdObject->buyerId);
+            $newOrder->setProductId($stdObject->productId);
+            $newOrder->setQuantity($stdObject->quantity);
+            $newOrder->setTotalPrice($stdObject->totalPrice);
+            $newOrder->setStatus($stdObject->status);
+            return $newOrder;
+        } else {
+            $orderList = [];
+            foreach($stdObject as $newstdObject) {
+                $newOrder = new Orders();
+                $newOrder->setSellerId($newstdObject->sellerId);
+                $newOrder->setBuyerId($newstdObject->buyerId);
+                $newOrder->setProductId($newstdObject->productId);
+                $newOrder->setQuantity($newstdObject->quantity);
+                $newOrder->setTotalPrice($newstdObject->totalPrice);
+                $newOrder->setStatus($newstdObject->status);
+                $orderList[] = $newOrder;
+            }
+            return $orderList;
+        }
+    }
 }

@@ -19,7 +19,17 @@ switch ($method) {
     case "GET":
         echo json_encode(ProductConverter::convertToStd(ProductsDAO::getAllProducts()));
     break;
-    default:
-        echo json_encode(ProductConverter::convertToStd(ProductsDAO::getAllProducts()));
-
+    case "POST":
+        $data = json_decode(file_get_contents('php://input'));
+        ProductsDAO::insertProduct(
+            ProductConverter::convertToObj($data)
+        );
+        header("Location: http://localhost:8080");
+    break;
+    case "DELETE":
+        $product = json_decode(file_get_contents('php://input'));
+        ProductsDAO::deleteProductById($product);
+        echo "User Deleted!";
+        // header("Location: http://localhost:8080");
+    break;
 }

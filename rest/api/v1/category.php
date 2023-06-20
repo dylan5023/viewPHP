@@ -19,7 +19,12 @@ switch ($method) {
     case "GET":
         echo json_encode(CategoryConverter::convertToStd(CategoriesDAO::getAllCategories()));
     break;
-    default:
-        echo json_encode(CategoryConverter::convertToStd(CategoriesDAO::getAllCategories()));
+    case "POST":
+        $data = json_decode(file_get_contents('php://input'));
+        CategoriesDAO::insertCategory(
+            CategoryConverter::convertToObj($data)
+        );
+        header("Location: http://localhost:8080");
+    break;
 
 }

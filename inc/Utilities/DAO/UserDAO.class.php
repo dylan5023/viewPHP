@@ -51,12 +51,11 @@ class UserDAO {
         return self::$db->lastInsertedId();
     }
 
-    public static function deleteUserById(User $user) {
-        $sql = "DELETE FROM users WHERE userId = :userId and userName = :userName";
+    public static function deleteUserById(int $userId) {
+        $sql = "DELETE FROM users WHERE userId = :userId";
 
         self::$db->query($sql);
-        self::$db->bind(":userId", $user->getUserId());
-        self::$db->bind(":userName", $user->getUserName());
+        self::$db->bind(":userId", $userId);
         self::$db->execute();
 
         return self::$db->rowCount();

@@ -12,7 +12,7 @@ class ProductConverter {
             $stdObject->description = $product->getDescription();
             $stdObject->price = $product->getPrice();
             $stdObject->categoryId = $product->getCategoryId();
-            $stdObject->condition = $product->getCondition();
+            $stdObject->conditions = $product->getCondition();
             $stdObject->createdAt = $product->getCreatedAt();
             $stdObject->updatedAt = $product->getUpdatedAt();
 
@@ -27,11 +27,39 @@ class ProductConverter {
                 $stdObject->description = $product->getDescription();
                 $stdObject->price = $product->getPrice();
                 $stdObject->categoryId = $product->getCategoryId();
-                $stdObject->condition = $product->getCondition();
+                $stdObject->conditions = $product->getCondition();
                 $stdObject->updatedAt = $product->getUpdatedAt();
                 $stdObjectList[] = $stdObject;
             }
             return $stdObjectList;
+        }
+    }
+    //To post into Database
+    public static function convertToObj($stdObject) {
+        if ( ! is_array($stdObject) ) {
+            $newProduct = new Products();
+            $newProduct->setSellerId($stdObject->sellerId);
+            $newProduct->setTitle($stdObject->title);
+            $newProduct->setDescription($stdObject->description);
+            $newProduct->setPrice($stdObject->price);
+            $newProduct->setCategoryId($stdObject->categoryId);
+            $newProduct->setCondition($stdObject->conditions);
+            $newProduct->setUpdatedAt(date('Y-m-d'));
+            return $newProduct;
+        } else {
+            $productList = [];
+            foreach($stdObject as $newstdObject) {
+                $newProduct = new Products();
+                $newProduct->setSellerId($newstdObject->sellerId);
+                $newProduct->setTitle($newstdObject->title);
+                $newProduct->setDescription($newstdObject->description);
+                $newProduct->setPrice($newstdObject->price);
+                $newProduct->setCategoryId($newstdObject->categoryId);
+                $newProduct->setCondition($newstdObject->conditions);
+                $newProduct->setUpdatedAt(date('Y-m-d'));
+                $productList[] = $newProduct;
+            }
+            return $productList;
         }
     }
 }

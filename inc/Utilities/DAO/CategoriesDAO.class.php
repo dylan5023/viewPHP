@@ -24,7 +24,7 @@ class OrderDAO {
         return self::$db->singleResult();
     }
 
-    public static function insertOrder(Categories $category){
+    public static function insertCategory(Categories $category){
         $sql = "INSERT INTO categories (type) values (:type)";
         self::$db->query($sql); 
         self::$db->bind(":type", $category->getType());

@@ -19,7 +19,18 @@ switch ($method) {
     case "GET":
         echo json_encode(OrderConverter::convertToStd(OrdersDAO::getAllOrders()));
     break;
-    default:
-        echo json_encode(OrderConverter::convertToStd(OrdersDAO::getAllOrders()));
+    case "POST":
+        $data = json_decode(file_get_contents('php://input'));
+        OrdersDAO::insertOrder(
+            OrderConverter::convertToObj($data)
+        );
+        header("Location: http://localhost:8080");
+    break;
+    case "DELETE":
+        $order = json_decode(file_get_contents('php://input'));
+        OrdersDAO::deleteProductById($order);
+        echo "Order Deleted!";
+        // header("Location: http://localhost:8080");
+    break;
 
 }

@@ -30,4 +30,20 @@ class CategoryConverter {
             return $stdObjectList;
         }
     }
+    //To post into Database
+    public static function convertToObj($stdObject) {
+        if ( ! is_array($stdObject) ) {
+            $newcategory = new Categories();
+            $newcategory->setType($stdObject->type);
+            return $newcategory;
+        } else {
+            $categoryList = [];
+            foreach($stdObject as $newstdObject) {
+                $newcategory = new Orders();
+                $newcategory->setType($stdObject->type);
+                $categoryList[] = $newcategory;
+            }
+            return $categoryList;
+        }
+    }
 }
