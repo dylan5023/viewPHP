@@ -38,7 +38,7 @@ class ProductDAO {
         return self::$db->lastInsertedId();
     }
 
-    public static function updateUserById(Products $product) {
+    public static function updateProductById(Products $product) {
         $sql = "UPDATE products SET productId = :productId, sellerId = :sellerId, title = :title, description = :description, price = :price, categoryId = :categoryId, condition = :condition, updatedAt = :updatedAt where userId = :userId";
         self::$db->query($sql);
         self::$db->bind(":productId", $product->getProductId());

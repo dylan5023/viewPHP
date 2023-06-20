@@ -28,9 +28,18 @@ switch ($method) {
         );
         header("Location: http://localhost:8080");
     break;
+    case "PUT":
+        $data = json_decode(file_get_contents('php://input'));
+        // $orderId = $data->id;
+        $updateOrder = OrderConverter::convertToObj($data);
+        // OrdersDAO::updateOrderById($orderId, $updateOrder);
+        OrdersDAO::updateOrderById($updateOrder);
+        echo "Order Updated!";
+        // header("Location: http://localhost:8080");
+        break;
     case "DELETE":
         $order = json_decode(file_get_contents('php://input'));
-        OrdersDAO::deleteProductById($order);
+        OrdersDAO::deleteOrderById($order);
         echo "Order Deleted!";
         // header("Location: http://localhost:8080");
     break;

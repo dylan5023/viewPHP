@@ -28,6 +28,14 @@ switch ($method) {
         );
         header("Location: http://localhost:8080");
     break;
+    case "PUT":
+        $data = json_decode(file_get_contents('php://input'));
+        // $userId = $data->id;
+        $updatedUser = UserConverter::convertToObj($data);
+        UserDAO::updateUserById($updatedUser);
+        echo "User Updated!";
+        // header("Location: http://localhost:8080");
+        break;
     case "DELETE":
         $user = json_decode(file_get_contents('php://input'));
         UserDAO::deleteUserById($user);

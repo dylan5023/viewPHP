@@ -20,18 +20,26 @@ $method = $_SERVER["REQUEST_METHOD"];
 switch ($method) {
     case "GET":
         echo json_encode(ProductConverter::convertToStd(ProductsDAO::getAllProducts()));
-    break;
+        break;
     case "POST":
         $data = json_decode(file_get_contents('php://input'));
-        ProductsDAO::insertProduct(
-            ProductConverter::convertToObj($data)
-        );
+        ProductsDAO::insertProduct(ProductConverter::convertToObj($data));
         header("Location: http://localhost:8080");
-    break;
+        break;
+    case "PUT":
+        $data = json_decode(file_get_contents('php://input'));
+        // $productId = $data->id;
+        $updatedProduct = ProductConverter::convertToObj($data);
+        // ProductsDAO::updateProduct($productId, $updatedProduct);
+        ProductsDAO::updateProductById($updatedProduct);
+        echo "Product Updated!";
+        // header("Location: http://localhost:8080");
+        break;
     case "DELETE":
         $product = json_decode(file_get_contents('php://input'));
         ProductsDAO::deleteProductById($product);
-        echo "User Deleted!";
+        echo "Product Deleted!";
         // header("Location: http://localhost:8080");
-    break;
+        break;
 }
+

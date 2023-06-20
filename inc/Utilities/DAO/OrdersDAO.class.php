@@ -37,7 +37,7 @@ class OrderDAO {
         return self::$db->lastInsertedId();
     }
 
-    public static function updateUserById(Orders $order) {
+    public static function updateOrderById(Orders $order) {
         $sql = "UPDATE orders SET status = :status where orderId = :orderId";
         self::$db->query($sql);
         self::$db->bind(":status", $order->getStatus());
@@ -45,7 +45,7 @@ class OrderDAO {
         return self::$db->lastInsertedId();
     }
 
-    public static function deleteProductById(int $orderId) {
+    public static function deleteOrderById(int $orderId) {
         $sql = "DELETE FROM orders WHERE orderId = :orderId";
         self::$db->query($sql);
         self::$db->bind(":orderId", $orderId);
