@@ -53,11 +53,10 @@ class ProductDAO {
         return self::$db->lastInsertedId();
     }
 
-    public static function deleteProductById(Products $product) {
-        $sql = "DELETE FROM products WHERE productId = :productId and sellerId = :sellerId";
+    public static function deleteProductById(int $productId) {
+        $sql = "DELETE FROM products WHERE productId = :productId";
         self::$db->query($sql);
-        self::$db->bind(":productId", $product->getProductId());
-        self::$db->bind(":sellerId", $product->getSellerId());
+        self::$db->bind(":productId", $productId);
         self::$db->execute();
 
         return self::$db->rowCount();

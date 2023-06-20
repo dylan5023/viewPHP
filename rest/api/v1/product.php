@@ -1,7 +1,7 @@
 <?php
 
-//localhost:8080/vue-class-03/rest/api/v1/employee.php
-//htocs/vue-class-03/rest/api/v1/employee.php
+//localhost:8080/vue-class-03/rest/api/v1/product.php
+//htocs/vue-class-03/rest/api/v1/product.php
 
 require_once ("../../../inc/config.inc.php");
 require_once ("../../../inc/Entities/Employee.class.php");
@@ -9,9 +9,11 @@ require_once ("../../../inc/Utilities/PDOAgent.class.php");
 require_once ("../../../inc/Utilities/DAO/ProductsDAO.class.php");
 require_once ("../../../inc/Utilities/ProductConverter.class.php");
 
-EmployeeDAO::startDb();
+ProductsDAO::startDb();
 
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET,POST,HEAD,OPTIONS,POST,PUT,DELETE ");
+header('Content-Type: application/json; charset=utf-8');
 
 $method = $_SERVER["REQUEST_METHOD"];
 

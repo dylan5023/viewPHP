@@ -1,7 +1,7 @@
 <?php
 
-//localhost:8080/vue-class-03/rest/api/v1/employee.php
-//htocs/vue-class-03/rest/api/v1/employee.php
+//localhost:8080/vue-class-03/rest/api/v1/user.php
+//htocs/vue-class-03/rest/api/v1/user.php
 
 require_once ("../../../inc/config.inc.php");
 require_once ("../../../inc/Entities/Employee.class.php");
@@ -9,7 +9,7 @@ require_once ("../../../inc/Utilities/PDOAgent.class.php");
 require_once ("../../../inc/Utilities/DAO/UserDAO.class.php");
 require_once ("../../../inc/Utilities/UserConverter.class.php");
 
-EmployeeDAO::startDb();
+UserDAO::startDb();
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET,POST,HEAD,OPTIONS,POST,PUT,DELETE ");
